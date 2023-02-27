@@ -3,9 +3,9 @@ Catalyst encrypts all defined documents, media, and disks in a unified database,
     The Catalyst is entirely speaking C#, that hence makes it easily embedded. This particular locker follows an AES-256, AES-128 and a SHA256 Encryption, and has proven to take give four anti-virus programs a run for their money.
 
 # Catalyst Cryptography
--> encrypted via AES-256 
--> AES key generated manually 
--> AES key is encrypted by RSA-2048 (windows RSA implementation)  
+=> encrypted via AES-256 
+=> AES key generated manually 
+=> AES key is encrypted by RSA-2048 (windows RSA implementation)  
 
 Encryption domains may include:
 .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pst, .ost, .msg, .eml, .vsd, .vsdx, .txt, .csv, .rtf, .123, .wks, .wk1, .pdf, .dwg, .onetoc2, .snt,  .jpeg, .jpg, .docb, .docm, .dot, .dotm, .dotx, .ppam, .potx, .potm, .edb, .hwp, .602, .sxi, .sti, .sldx, .sldm, .sldm, .vdi, .vmdk, .vmx,  .gpg, .aes, .ARC, .PAQ, .bz2, .tbk, .bak, .tar, .tgz, .gz, .7z, .rar, .zip, .backup, .iso, .vcd, .bmp, .png, .gif, .raw, .cgm, .tif, .tiff 
