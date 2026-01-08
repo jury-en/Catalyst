@@ -1,4 +1,4 @@
-# The Catalystwss
+# The Catalystws
 Catalyst encrypts all defined documents, media, and disks in a unified database, rendering inaccessibility to the encrypted category.  To unlock the encrypted domains, a decryption key should be satisfied. Once encrypted, the only safe zone is providing an encryption key, not even restarting the computer can save it. You may utilise its capability by encrypting a test file.
     The Catalyst is entirely speaking C#, that hence makes it easily embedded. This particular locker follows an AES-256, AES-128 and a SHA256 Encryption, and has proven to take give four anti-virus programs a run for their money.
 
